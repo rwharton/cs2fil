@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
 import numpy as np
 import os 
 import glob
@@ -7,6 +10,8 @@ import astropy.units as u
 from astropy.time import Time
 import sigproc as fb
 import click
+
+#
 
 #########################
 ##  DADA HEADER CLASS  ##
@@ -304,7 +309,8 @@ def write_dada_header(outfile, fcenter_MHz, bw_MHz, tsamp_us,
 
     # UTC Start Time
     tstart = Time(mjd_start, format='mjd')
-    tstr = str(tstart.datetime64)
+    #tstr = str(tstart.datetime64)
+    tstr = tstart.isot
     utc_str = '-'.join(tstr.split('T'))
     hdr.utc_start = utc_str
     
@@ -619,8 +625,8 @@ def cs2fil(basename, cs_dir, dada_dir, fil_dir, dm, nchan,
     t2 = time.time()
 
     # Clean up by removing dada file
-    if os.path.exists(fil_file) and os.path.exists(dada_file):
-        os.remove(dada_file)
+    #if os.path.exists(fil_file) and os.path.exists(dada_file):
+    #    os.remove(dada_file)
 
     print("")
     print("Convert to DADA -- %.1f sec" %(t1 - t0))
@@ -657,8 +663,9 @@ def cs2fil_multipass(basename, cs_dir, dada_dir, fil_dir, dm, nchan,
     t2 = time.time()
 
     # Clean up by removing dada file
-    if os.path.exists(fil_file) and os.path.exists(dada_file):
-        os.remove(dada_file)
+    #if os.path.exists(fil_file) and os.path.exists(dada_file):
+    #    pass
+    #    os.remove(dada_file)
 
     print("")
     print("Convert to DADA -- %.1f sec" %(t1 - t0))
